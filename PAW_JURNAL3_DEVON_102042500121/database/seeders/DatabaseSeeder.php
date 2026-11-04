@@ -1,0 +1,36 @@
+<?php
+
+namespace Database\Seeders;
+
+use App\Models\User;
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
+
+class DatabaseSeeder extends Seeder
+{
+    public function run(): void
+    {
+        // Akun Pengguna LMS (1 Dosen & 1 Mahasiswa)
+        // TODO 1 : Buat akun awal untuk Dosen.
+        User::updateOrCreate(
+            ['email' => 'dosen@celoe.ac.id'],
+            [
+                'name' => 'Dosen CeLOE',
+                'password' => Hash::make('password123'),
+                'role' => 'dosen',
+                'nomor_induk' => '198001012010011001',
+            ]
+        );
+
+        // Akun Mahasiswa
+        User::updateOrCreate(
+            ['email' => 'mahasiswa@celoe.ac.id'],
+            [
+                'name' => 'Mahasiswa CeLOE',
+                'password' => Hash::make('password123'),
+                'role' => 'mahasiswa',
+                'nomor_induk' => '1202220001',
+            ]
+        );
+    }
+}
